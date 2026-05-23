@@ -15,6 +15,8 @@ const SERVICE_URLS = {
   "Hulu": "https://www.hulu.jp/",
   "WOWOW": "https://www.wowow.co.jp/",
   "WOWOW / WOWOWオンデマンド": "https://www.wowow.co.jp/",
+  "WOWOW（チャンピオンズリーグ）": "https://www.wowow.co.jp/",
+  "ABEMA de WOWSPO": "https://abema.tv/",
   "スカパー！": "https://www.skyperfectv.co.jp/",
   "J SPORTSオンデマンド": "https://www.jsports.co.jp/",
   "J SPORTS": "https://www.jsports.co.jp/",
@@ -50,7 +52,7 @@ const DB = {
     keywords: ["jリーグ", "j1", "j2", "j3", "jleague", "百年構想", "明治安田", "ジェイリーグ"],
   },
   "japan": {
-    title: "サッカー日本代表", sport: "soccer", region: "domestic",
+    title: "サッカー日本代表", sport: "soccer", region: "domestic", isJapan: true,
     season: "2026年",
     services: [
       { name: "DAZN / DMM×DAZNホーダイ", type: "streaming", note: "W杯・アジア予選など主要試合を配信。日本代表W杯戦は無料" },
@@ -60,8 +62,103 @@ const DB = {
     tips: "W杯の日本代表戦はDAZNで無料視聴可能。親善試合はNHKや民放でも放送される場合あり。",
     keywords: ["日本代表", "侍ブルー", "サムライブルー", "三笘", "久保", "伊東", "遠藤"],
   },
+  // ── UEFA欧州大会 ──
+  "championsLeague": {
+    title: "UEFAチャンピオンズリーグ（CL）", sport: "soccer", region: "international",
+    season: "2025-26シーズン",
+    services: [
+      { name: "WOWOW / WOWOWオンデマンド", type: "streaming", note: "全試合独占配信（リーグフェーズ〜決勝）。月額2,530円" },
+      { name: "ABEMA de WOWSPO", type: "streaming", note: "ABEMA経由でWOWOWの配信を視聴可能" },
+    ],
+    tips: "CLはWOWOW独占。EL・ECLも同じ契約で視聴可能。",
+    keywords: ["チャンピオンズリーグ", "cl", "champions league", "欧州cl", "uefa cl"],
+  },
+  "europaLeague": {
+    title: "UEFAヨーロッパリーグ（EL）", sport: "soccer", region: "international",
+    season: "2025-26シーズン",
+    services: [
+      { name: "WOWOW / WOWOWオンデマンド", type: "streaming", note: "全試合配信。CLと同パック。月額2,530円" },
+      { name: "ABEMA de WOWSPO", type: "streaming", note: "ABEMA経由で視聴可能" },
+    ],
+    tips: "ELはWOWOWで配信。CLと同じ契約で視聴可能。",
+    keywords: ["ヨーロッパリーグ", "el", "europa league", "uefa el"],
+  },
+  "conferenceLeague": {
+    title: "UEFAカンファレンスリーグ（ECL）", sport: "soccer", region: "international",
+    season: "2025-26シーズン",
+    services: [
+      { name: "WOWOW / WOWOWオンデマンド", type: "streaming", note: "注目試合を配信。CL・ELと同パック。月額2,530円" },
+      { name: "ABEMA de WOWSPO", type: "streaming", note: "ABEMA経由で視聴可能" },
+    ],
+    tips: "ECLはWOWOWで注目試合を配信。CL・ELと同じ契約で視聴可能。",
+    keywords: ["カンファレンスリーグ", "ecl", "conference league", "uefa ecl"],
+  },
+
+  // ── イングランド カップ戦 ──
+  "faCup": {
+    title: "FAカップ（イングランド）", sport: "soccer", region: "international",
+    season: "2025-26シーズン",
+    services: [
+      { name: "U-NEXTサッカーパック", type: "streaming", note: "独占配信。プレミアリーグ・コミュニティシールドと同パック。月額2,600円" },
+    ],
+    tips: "FAカップはU-NEXT独占。EFLカップ（カラバオカップ）はDAZNで別途視聴。",
+    keywords: ["faカップ", "fa cup", "イングランドカップ", "鎌田", "クリスタルパレス"],
+  },
+  "eflCup": {
+    title: "EFLカップ（カラバオカップ）", sport: "soccer", region: "international",
+    season: "2025-26シーズン",
+    services: [
+      { name: "DAZN / DMM×DAZNホーダイ", type: "streaming", note: "独占配信。月額3,480円（DMM×DAZNホーダイ）" },
+    ],
+    tips: "EFLカップはDAZN独占。FAカップはU-NEXTのため注意。イングランドを全て見るにはDAZN＋U-NEXTの両方が必要。",
+    keywords: ["eflカップ", "カラバオカップ", "リーグカップ", "efl cup", "carabao cup"],
+  },
+
+  // ── スペイン カップ戦 ──
+  "copaDelRey": {
+    title: "コパ・デル・レイ（スペイン）", sport: "soccer", region: "international",
+    season: "2025-26シーズン",
+    services: [
+      { name: "U-NEXTサッカーパック", type: "streaming", note: "独占配信。ラ・リーガ・FAカップと同パック。月額2,600円" },
+    ],
+    tips: "コパ・デル・レイはU-NEXT独占。ラ・リーガと同じパックで視聴できる。",
+    keywords: ["コパデルレイ", "copa del rey", "スペインカップ", "スーペルコパ"],
+  },
+
+  // ── イタリア カップ戦 ──
+  "coppaItalia": {
+    title: "コッパ・イタリア / スーペルコッパ（イタリア）", sport: "soccer", region: "international",
+    season: "2025-26シーズン",
+    services: [
+      { name: "DAZN / DMM×DAZNホーダイ", type: "streaming", note: "配信中。セリエAと同パック。月額3,480円（DMM×DAZNホーダイ）" },
+    ],
+    tips: "コッパ・イタリアはDAZNで配信。セリエAと同じ契約で視聴できる。",
+    keywords: ["コッパイタリア", "coppa italia", "イタリアカップ", "スーペルコッパ"],
+  },
+
+  // ── ドイツ カップ戦 ──
+  "dfbPokal": {
+    title: "DFBポカール（ドイツ）", sport: "soccer", region: "international",
+    season: "2025-26シーズン",
+    services: [
+      { name: "DAZN / DMM×DAZNホーダイ", type: "streaming", note: "独占配信。ブンデスリーガと同パック。月額3,480円（DMM×DAZNホーダイ）" },
+    ],
+    tips: "DFBポカールはDAZN独占。ブンデスリーガと同じ契約で視聴できる。",
+    keywords: ["dfbポカール", "dfb pokal", "ドイツカップ", "ドイツカップ戦"],
+  },
+
+  // ── フランス カップ戦 ──
+  "coupeDefrance": {
+    title: "クープ・ドゥ・フランス（フランス）", sport: "soccer", region: "international",
+    season: "2025-26シーズン",
+    services: [
+      { name: "DAZN / DMM×DAZNホーダイ", type: "streaming", note: "配信中。リーグ・アンと同パック。月額3,480円（DMM×DAZNホーダイ）" },
+    ],
+    tips: "クープ・ドゥ・フランスはDAZNで配信。リーグ・アンと同じ契約で視聴できる。",
+    keywords: ["クープドゥフランス", "coupe de france", "フランスカップ"],
+  },
   "acl": {
-    title: "AFCアジアチャンピオンズリーグ", sport: "soccer", region: "domestic",
+    title: "AFCアジアチャンピオンズリーグ", sport: "soccer", region: "domestic", isJapan: true,
     season: "2025-26シーズン",
     services: [
       { name: "DAZN / DMM×DAZNホーダイ", type: "streaming", note: "配信中" },
@@ -145,7 +242,7 @@ const DB = {
     keywords: ["プロ野球", "npb", "セリーグ", "パリーグ", "巨人", "阪神", "ソフトバンク", "日本ハム", "ヤクルト", "広島", "中日", "横浜", "楽天", "ロッテ", "西武", "オリックス"],
   },
   "wbc": {
-    title: "WBC（ワールドベースボールクラシック）", sport: "baseball", region: "domestic",
+    title: "WBC（ワールドベースボールクラシック）", sport: "baseball", region: "domestic", isJapan: true,
     season: "2026年大会（3月開催・終了）",
     services: [
       { name: "Netflix", type: "streaming", note: "日本国内独占配信。地上波・他サービスでの放送一切なし" },
@@ -194,7 +291,7 @@ const DB = {
 
   // ── テニス 国内 ──
   "japanTennis": {
-    title: "ジャパンオープン・国内テニス大会", sport: "tennis", region: "domestic",
+    title: "ジャパンオープン・国内テニス大会", sport: "tennis", region: "domestic", isJapan: true,
     season: "2026年",
     services: [
       { name: "WOWOW / WOWOWオンデマンド", type: "streaming", note: "楽天ジャパンオープンなど国内大会を配信" },
@@ -308,7 +405,7 @@ const DB = {
     keywords: ["水泳", "競泳", "swimming", "池江璃花子", "瀬戸大也"],
   },
   "volleyball": {
-    title: "バレーボール（Vリーグ・日本代表）", sport: "other", region: "domestic",
+    title: "バレーボール（Vリーグ・日本代表）", sport: "other", region: "domestic", isJapan: true,
     season: "2025-26シーズン",
     services: [
       { name: "NHK総合", type: "tv", note: "日本代表戦・国際大会などを放送" },
@@ -320,32 +417,48 @@ const DB = {
   },
 };
 
+// プロリーグフィルター
 const SPORTS = [
-  { id: "all",        label: "すべて",   icon: "🔍" },
   { id: "soccer",     label: "サッカー",  icon: "⚽" },
-  { id: "baseball",   label: "野球",     icon: "⚾" },
-  { id: "basketball", label: "バスケ",   icon: "🏀" },
-  { id: "tennis",     label: "テニス",   icon: "🎾" },
-  { id: "f1",         label: "F1",       icon: "🏎️" },
+  { id: "baseball",   label: "野球",      icon: "⚾" },
+  { id: "basketball", label: "バスケ",    icon: "🏀" },
+  { id: "tennis",     label: "テニス",    icon: "🎾" },
+  { id: "f1",         label: "F1",        icon: "🏎️" },
   { id: "rugby",      label: "ラグビー",  icon: "🏉" },
-  { id: "golf",       label: "ゴルフ",   icon: "⛳" },
-  { id: "other",      label: "その他",   icon: "🏆" },
+  { id: "golf",       label: "ゴルフ",    icon: "⛳" },
+  { id: "other",      label: "その他",    icon: "🏆" },
+];
+
+// 日本代表フィルター
+const JAPAN_SPORTS = [
+  { id: "japan_soccer",      label: "サッカー",  icon: "🇯🇵", sport: "soccer" },
+  { id: "japan_baseball",    label: "野球",      icon: "🇯🇵", sport: "baseball" },
+  { id: "japan_basketball",  label: "バスケ",    icon: "🇯🇵", sport: "basketball" },
+  { id: "japan_tennis",      label: "テニス",    icon: "🇯🇵", sport: "tennis" },
+  { id: "japan_volleyball",  label: "バレー",    icon: "🇯🇵", sport: "other" },
 ];
 
 const REGION_LABEL = {
-  domestic: { label: "🇯🇵 国内", bg: "#e8f4ff", color: "#1a6fc4", border: "#b3d4f5" },
+  domestic: { label: "日本国内", bg: "#e8f4ff", color: "#1a6fc4", border: "#b3d4f5" },
   international: { label: "🌍 海外", bg: "#fff0e8", color: "#c45a1a", border: "#f5c8a0" },
 };
 
-function searchDB(query, sport) {
+function searchDB(query, selectedSport, selectedJapanSport) {
   const q = query.toLowerCase().trim();
   return Object.entries(DB)
     .filter(([, item]) => {
-      const sportMatch = !sport || sport === "all" || item.sport === sport;
-      if (!q) return sportMatch;
+      // プロリーグ側のフィルター
+      const proMatch = !item.isJapan && (!selectedSport || item.sport === selectedSport);
+      // 日本代表側のフィルター
+      const japanJs = selectedJapanSport ? JAPAN_SPORTS.find(j => j.id === selectedJapanSport) : null;
+      const japanMatch = item.isJapan && (!japanJs || item.sport === japanJs.sport);
+
+      const show = proMatch || japanMatch;
+      if (!show) return false;
+      if (!q) return true;
       const keywordMatch = item.keywords.some(k => k.includes(q) || q.includes(k));
       const titleMatch = item.title.toLowerCase().includes(q);
-      return sportMatch && (keywordMatch || titleMatch);
+      return keywordMatch || titleMatch;
     })
     .map(([key, item]) => ({ key, ...item }));
 }
@@ -404,15 +517,17 @@ function Card({ item, expanded, setExpanded }) {
         }}
       >
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: "15px", fontWeight: 800, color: "#1a2a3a", marginBottom: "4px", lineHeight: 1.3 }}>
+          <div style={{ fontSize: "15px", fontWeight: 800, color: "#1a2a3a", marginBottom: "4px", lineHeight: 1.3, display: "flex", alignItems: "center", gap: "6px" }}>
             {item.title}
+            {item.isJapan && <span style={{ fontSize: "16px" }}>🇯🇵</span>}
           </div>
           <div style={{ fontSize: "11px", color: "#7a90a8" }}>{item.season}</div>
         </div>
         <div style={{ display: "flex", gap: "6px", alignItems: "center", flexShrink: 0 }}>
           <div style={{
             fontSize: "11px", padding: "3px 10px", borderRadius: "10px",
-            background: "#e8f4ff", color: "#1a6fc4", fontWeight: 700,
+            background: item.isJapan ? "#fff0e8" : "#e8f4ff",
+            color: item.isJapan ? "#c45a1a" : "#1a6fc4", fontWeight: 700,
           }}>
             {item.services.length}サービス
           </div>
@@ -481,17 +596,34 @@ function Card({ item, expanded, setExpanded }) {
 }
 
 export default function App() {
-  const [selectedSport, setSelectedSport] = useState("all");
+  const [selectedSport, setSelectedSport] = useState(null);     // null=全プロリーグ
+  const [selectedJapanSport, setSelectedJapanSport] = useState(null); // null=全日本代表
   const [query, setQuery] = useState("");
   const [expanded, setExpanded] = useState(null);
 
-  const results = useMemo(() => searchDB(query, selectedSport), [query, selectedSport]);
-  const { domestic, international, none } = useMemo(() => groupResults(results), [results]);
+  const results = useMemo(
+    () => searchDB(query, selectedSport, selectedJapanSport),
+    [query, selectedSport, selectedJapanSport]
+  );
 
-  const handleSport = (id) => { setSelectedSport(id); setExpanded(null); };
+  // プロリーグ結果と日本代表結果を分離
+  const proResults = useMemo(() => results.filter(r => !r.isJapan), [results]);
+  const japanResults = useMemo(() => results.filter(r => r.isJapan), [results]);
 
-  // 特定スポーツ選択時のみ国内・海外ヘッダーを表示
-  const showRegionHeaders = selectedSport !== "all" && domestic.length > 0 && international.length > 0;
+  // プロリーグの国内・海外グループ
+  const { domestic, international, none } = useMemo(() => groupResults(proResults), [proResults]);
+
+  const handleSport = (id) => {
+    setSelectedSport(prev => prev === id ? null : id);
+    setExpanded(null);
+  };
+  const handleJapanSport = (id) => {
+    setSelectedJapanSport(prev => prev === id ? null : id);
+    setExpanded(null);
+  };
+
+  // プロリーグで特定スポーツ選択時のみ国内・海外ヘッダーを表示
+  const showRegionHeaders = !!selectedSport && domestic.length > 0 && international.length > 0;
 
   return (
     <div style={{
@@ -560,29 +692,54 @@ export default function App() {
           )}
         </div>
 
-        {/* スポーツフィルター */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "20px" }}>
-          {SPORTS.map(s => (
-            <button key={s.id} onClick={() => handleSport(s.id)} style={{
-              padding: "7px 13px", borderRadius: "20px",
-              border: selectedSport === s.id ? "1px solid #1a6fc4" : "1px solid #c8d8e8",
-              background: selectedSport === s.id ? "#1a6fc4" : "#ffffff",
-              color: selectedSport === s.id ? "#ffffff" : "#4a6a8a",
-              fontSize: "12px", cursor: "pointer", fontFamily: "inherit",
-              fontWeight: selectedSport === s.id ? 700 : 400,
-              transition: "all 0.15s",
-              boxShadow: selectedSport === s.id ? "0 2px 8px rgba(26,111,196,0.3)" : "0 1px 3px rgba(0,0,0,0.06)",
-            }}>
-              {s.icon} {s.label}
-            </button>
-          ))}
+        {/* ── プロリーグ フィルター ── */}
+        <div style={{ marginBottom: "12px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+            <span style={{ fontSize: "11px", fontWeight: 700, color: "#1a6fc4", whiteSpace: "nowrap" }}>プロリーグ（国内・海外のリーグ戦/カップ戦）</span>
+            <div style={{ flex: 1, height: "1px", background: "#b3d4f5" }} />
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", paddingLeft: "4px" }}>
+            {SPORTS.map(s => (
+              <button key={s.id} onClick={() => handleSport(s.id)} style={{
+                padding: "7px 13px", borderRadius: "20px",
+                border: selectedSport === s.id ? "1px solid #1a6fc4" : "1px solid #c8d8e8",
+                background: selectedSport === s.id ? "#1a6fc4" : "#ffffff",
+                color: selectedSport === s.id ? "#ffffff" : "#4a6a8a",
+                fontSize: "12px", cursor: "pointer", fontFamily: "inherit",
+                fontWeight: selectedSport === s.id ? 700 : 400,
+                transition: "all 0.15s",
+                boxShadow: selectedSport === s.id ? "0 2px 8px rgba(26,111,196,0.3)" : "0 1px 3px rgba(0,0,0,0.06)",
+              }}>
+                {s.icon} {s.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* 件数 */}
-        <div style={{ fontSize: "11px", color: "#7a90a8", marginBottom: "4px" }}>
-          {results.length > 0
-            ? `${results.length}件のリーグ・大会が見つかりました`
-            : query ? "" : `全${Object.keys(DB).length}件収録`}
+        {/* ── 日本代表 フィルター ── */}
+        <div style={{ marginBottom: "20px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+            <span style={{ fontSize: "11px", fontWeight: 700, color: "#c45a1a", whiteSpace: "nowrap" }}>🇯🇵 日本代表・W杯・五輪</span>
+            <div style={{ flex: 1, height: "1px", background: "#f5c8a0" }} />
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", paddingLeft: "4px" }}>
+            {JAPAN_SPORTS.map(j => (
+              <button key={j.id} onClick={() => handleJapanSport(j.id)} style={{
+                padding: "6px 12px", borderRadius: "20px",
+                border: selectedJapanSport === j.id ? "1px solid #c45a1a" : "1px solid #f5c8a0",
+                background: selectedJapanSport === j.id ? "#c45a1a" : "#fff8f4",
+                color: selectedJapanSport === j.id ? "#ffffff" : "#c45a1a",
+                fontSize: "12px", cursor: "pointer", fontFamily: "inherit",
+                fontWeight: selectedJapanSport === j.id ? 700 : 400,
+                transition: "all 0.15s",
+                boxShadow: selectedJapanSport === j.id ? "0 2px 8px rgba(196,90,26,0.3)" : "0 1px 3px rgba(0,0,0,0.04)",
+                display: "flex", alignItems: "center", gap: "6px",
+              }}>
+                <Hinomaru size={14} />
+                {j.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* 結果なし */}
@@ -590,36 +747,57 @@ export default function App() {
           <div style={{ textAlign: "center", padding: "60px 0", color: "#90a8c0" }}>
             <div style={{ fontSize: "52px", marginBottom: "16px" }}>📡</div>
             <div style={{ fontSize: "14px", lineHeight: 1.8 }}>
-              「{query}」に一致する情報が見つかりませんでした。<br />
-              <span style={{ fontSize: "12px", color: "#b0c8d8" }}>キーワードを変えてお試しください</span>
+              {query ? `「${query}」に一致する情報が見つかりませんでした。` : "条件に一致する情報がありません。"}<br />
+              <span style={{ fontSize: "12px", color: "#b0c8d8" }}>キーワードや絞り込みを変えてお試しください</span>
             </div>
           </div>
         )}
 
-        {/* 国内セクション */}
-        {domestic.length > 0 && (
-          <>
-            {showRegionHeaders && <SectionHeader region="domestic" />}
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              {domestic.map(item => <Card key={item.key} item={item} expanded={expanded} setExpanded={setExpanded} />)}
+        {/* ── プロリーグ結果 ── */}
+        {proResults.length > 0 && (
+          <div style={{ marginBottom: "24px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: "#1a6fc4", whiteSpace: "nowrap" }}>
+                プロリーグ（リーグ戦/カップ戦） · {proResults.length}件
+              </span>
+              <div style={{ flex: 1, height: "1px", background: "#b3d4f5" }} />
             </div>
-          </>
+            {domestic.length > 0 && (
+              <>
+                {showRegionHeaders && <SectionHeader region="domestic" />}
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                  {domestic.map(item => <Card key={item.key} item={item} expanded={expanded} setExpanded={setExpanded} />)}
+                </div>
+              </>
+            )}
+            {international.length > 0 && (
+              <>
+                {showRegionHeaders && <SectionHeader region="international" />}
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                  {international.map(item => <Card key={item.key} item={item} expanded={expanded} setExpanded={setExpanded} />)}
+                </div>
+              </>
+            )}
+            {none.length > 0 && (
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "8px" }}>
+                {none.map(item => <Card key={item.key} item={item} expanded={expanded} setExpanded={setExpanded} />)}
+              </div>
+            )}
+          </div>
         )}
 
-        {/* 海外セクション */}
-        {international.length > 0 && (
-          <>
-            {showRegionHeaders && <SectionHeader region="international" />}
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              {international.map(item => <Card key={item.key} item={item} expanded={expanded} setExpanded={setExpanded} />)}
+        {/* ── 日本代表結果 ── */}
+        {japanResults.length > 0 && (
+          <div style={{ marginBottom: "24px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: "#c45a1a", whiteSpace: "nowrap" }}>
+                🇯🇵 日本代表・W杯・五輪 · {japanResults.length}件
+              </span>
+              <div style={{ flex: 1, height: "1px", background: "#f5c8a0" }} />
             </div>
-          </>
-        )}
-
-        {/* 区分なし */}
-        {none.length > 0 && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: (domestic.length > 0 || international.length > 0) ? "10px" : "0" }}>
-            {none.map(item => <Card key={item.key} item={item} expanded={expanded} setExpanded={setExpanded} />)}
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              {japanResults.map(item => <Card key={item.key} item={item} expanded={expanded} setExpanded={setExpanded} />)}
+            </div>
           </div>
         )}
 
